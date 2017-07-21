@@ -9,9 +9,7 @@ float rotY = PI/4;
 float myTimer;
 
 // 背景描画用のテクスチャー
-PImage backSpaceTex1;
-PImage backSpaceTex2;
-PImage backSpaceTex3;
+PImage backSpaceTex1,backSpaceTex2,backSpaceTex3;
 
 void setup() { 
   size(WIDTH, HEIGHT, P3D);
@@ -30,7 +28,7 @@ void draw() {
   background(0);
   lights();
   noStroke();
-  translate(width/2.0, height/2.0, -150);
+  translate(width/2.0, height/2.0, -300);
   rotateX(rotX);
   rotateY(rotY);
 
@@ -43,10 +41,39 @@ void draw() {
 
   // 背景描画
   pushMatrix();
-  translate(0, -1200, 0);
+  translate(0, -1580, 0);
   scale(4000, 2000, 4000);
   DrawBackSpace(backSpaceTex1,backSpaceTex2,backSpaceTex3);
   popMatrix();
+  
+  // ロボット描画
+  pushMatrix();
+  face(myTimer);
+  popMatrix();
+  
+  pushMatrix();
+  body();
+  popMatrix();
+
+  pushMatrix();
+  right_hand(myTimer);
+  popMatrix();
+
+  pushMatrix();
+  left_hand(myTimer);
+  popMatrix();
+
+  pushMatrix();
+  right_foot(myTimer);
+  popMatrix();
+
+  pushMatrix();
+  left_foot(myTimer);
+  popMatrix();
+  
+  
+  
+  
   
   // タイマーを進める
   myTimer = myTimer + 0.1;
