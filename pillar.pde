@@ -1,5 +1,7 @@
+// 円柱を描画
 void pillar(float length, float radiusTop, float radiusBottom) {
   float x, y, z;
+
   pushMatrix();
 
   /* Create Top */

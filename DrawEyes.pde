@@ -1,11 +1,12 @@
-void eyes(float time) {
-  int r, g, b;
+// ロボットの目を描写
+void DrawEyes(float timer) {
+  int r, g, b;// RGB値
   int sec;
 
   r = 255; 
   g = 255; 
   b = 210;
-  sec = (int)time % 100; /* 0～99 */
+  sec = (int)timer % 100; /* 0～99 */
 
   /* eyes color Red */
   if (sec != 0 && sec > 70 && sec <= 80) {
@@ -35,5 +36,6 @@ void eyes(float time) {
   scale(20);
   sphere(1);
   popMatrix();
+  
 }
 

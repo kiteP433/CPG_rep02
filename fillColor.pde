@@ -1,3 +1,4 @@
+// 色設定
 void fillColor(String mode) {
 
   if (mode == null) {

@@ -28,7 +28,7 @@ void draw() {
   background(0);
   lights();
   noStroke();
-  translate(width/2.0, height/2.0, -300);
+  translate(width/2.0, height/2.0, -500);
   rotateX(rotX);
   rotateY(rotY);
 
@@ -47,33 +47,35 @@ void draw() {
   popMatrix();
   
   // ロボット描画
+  // ロボットの顔を描写
   pushMatrix();
-  face(myTimer);
+  DrawFace(myTimer);
   popMatrix();
   
+  // ロボットの顔を描写
   pushMatrix();
-  body();
+  DrawBody();
   popMatrix();
 
+  // ロボットの右腕を描写
   pushMatrix();
-  right_hand(myTimer);
+  DrawRightHand(myTimer);
   popMatrix();
 
+  // ロボットの左腕を描写
   pushMatrix();
-  left_hand(myTimer);
+  DrawLeftHand(myTimer);
   popMatrix();
 
+  // ロボットの右脚を描写
   pushMatrix();
-  right_foot(myTimer);
+  DrawRightFoot(myTimer);
   popMatrix();
 
+  // ロボットの左脚を描写
   pushMatrix();
-  left_foot(myTimer);
+  DrawLeftFoot(myTimer);
   popMatrix();
-  
-  
-  
-  
   
   // タイマーを進める
   myTimer = myTimer + 0.1;

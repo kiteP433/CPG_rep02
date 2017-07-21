@@ -1,4 +1,6 @@
-void body() {
+// ロボットの身体を描写
+void DrawBody() {
+  
   /* top body */
   fillColor("rob_c2");
   pushMatrix();
@@ -78,5 +80,6 @@ void body() {
   scale(80, 20, 20);
   sphere(1);
   popMatrix();
+  
 }
 

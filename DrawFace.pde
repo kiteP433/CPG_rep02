@@ -1,10 +1,11 @@
-void face(float time) {
-  int sec = (int)time % 100; /* 0～99 */
+// ロボットの顔を描写
+void DrawFace(float timer) {
+  int sec = (int)timer % 100; /* 0～99 */
+  
   if (sec != 0 && sec > 70 && sec <= 99) {
-    
   } else {
-    rotateY(PI*sin(time)/80);
-    rotateZ(PI*sin(time)/80);
+    rotateY(PI*sin(timer)/80);
+    rotateZ(PI*sin(timer)/80);
   }
 
   //robot face
@@ -16,6 +17,7 @@ void face(float time) {
   popMatrix();
 
   //robot eyes
-  eyes(time);
+  DrawEyes(timer);
+  
 }
 
