@@ -2,34 +2,33 @@
 void DrawRobot(float timer, int x, int y, int z) {
   // ロボットの顔を描写
   pushMatrix();
-  drawFace(timer, 0, 0, 0);
+  drawFace(timer, x, y, z);
   popMatrix();
 
   // ロボットの身体を描写
   pushMatrix();
-  drawBody(timer, 0, 0, 0);
+  drawBody(timer, x, y, z);
   popMatrix();
 
   // ロボットの右腕を描写
   pushMatrix();
-  drawRightHand(timer, 0, 0, 0);
+  drawHand(timer, x, y, z, -1);
   popMatrix();
 
   // ロボットの左腕を描写
   pushMatrix();
-  drawLeftHand(timer, 0, 0, 0);
+  drawHand(timer, x, y, z, 1);
   popMatrix();
 
   // ロボットの右脚を描写
   pushMatrix();
-  drawRightFoot(timer, 0, 0, 0);
+  drawFoot(timer, x, y, z, -1);
   popMatrix();
 
   // ロボットの左脚を描写
   pushMatrix();
-  drawLeftFoot(timer, 0, 0, 0);
+  drawFoot(timer, x, y, z, 1);
   popMatrix();
-  
 }
 
 // ロボットの目を描写
@@ -38,7 +37,6 @@ void drawEyes(float timer, int x, int y, int z) {
   int sec;
 
   sec = (int)timer % 100; /* 0～99 */
-
   // 目の色：赤
   if (sec != 0 && sec > 70 && sec <= 80) {
     r = 255; 
@@ -58,18 +56,18 @@ void drawEyes(float timer, int x, int y, int z) {
     b = 210;
   }
 
-  //robot right eye
+  // 右目
   fill(r, g, b);
   pushMatrix();
-  translate(-35, -45, 125);
+  translate(-35 + x, -45 + y, 125 + z);
   scale(20);
   sphere(1);
   popMatrix();
 
-  //robot left eye
+  // 左目
   fill(r, g, b);
   pushMatrix();
-  translate(35, -45, 125);
+  translate(35 + x, -45 + y, 125 + z);
   scale(20);
   sphere(1);
   popMatrix();
@@ -79,24 +77,16 @@ void drawEyes(float timer, int x, int y, int z) {
 
 // ロボットの顔を描写
 void drawFace(float timer, int x, int y, int z) {
-  int sec = (int)timer % 100; /* 0～99 */
-
-  if (sec != 0 && sec > 70 && sec <= 99) {
-  } else {
-    rotateY(PI*sin(timer)/80);
-    rotateZ(PI*sin(timer)/80);
-  }
-
-  //robot face
+  // 顔
   fillColor("rob_c1");
   pushMatrix();
-  translate(0, -30, 55);
+  translate(0 + x, -30 + y, 55 + z);
   scale(92, 92, 92);
   sphere(1);
   popMatrix();
 
-  //robot eyes
-  drawEyes(timer, 0, 0, 0);
+  // 両目
+  drawEyes(timer, x, y, z);
   
 }
 
@@ -105,7 +95,7 @@ void drawBody(float timer, int x, int y, int z) {
   // 首周りと肩
   fillColor("rob_c2");
   pushMatrix();
-  translate(0, 35, 0);
+  translate(0 + x, 35 + y, 0 + z);
   scale(120, 120, 120);
   sphere(1);
   popMatrix();
@@ -113,23 +103,23 @@ void drawBody(float timer, int x, int y, int z) {
   // 右の肩関節用の穴
   fillColor("black");
   pushMatrix();
-  translate(-105, 27, 0);
-  scale(30, 35, 45);
+  translate(-105 + x, 27 + y, 0 + z);
+  scale(30, 37, 45);
   box(1);
   popMatrix();
 
   // 左の肩関節用の穴
   fillColor("black");
   pushMatrix();
-  translate(105, 27, 0);
-  scale(30, 35, 45);
+  translate(105 + x, 27 + y, 0 + z);
+  scale(30, 37, 45);
   box(1);
   popMatrix();
 
   // 胸
   fillColor("rob_c3");
   pushMatrix();
-  translate(0, 100, 0);
+  translate(0 + x, 100 + y, 0 + z);
   scale(120, 80, 120);
   pillar(1.3, 1, 1);
   popMatrix();
@@ -137,7 +127,7 @@ void drawBody(float timer, int x, int y, int z) {
   // 右のネジ 
   fillColor("rob_c4");
   pushMatrix();
-  translate(-100, 100, 0);
+  translate(-100 + x, 100 + y, 0 + z);
   scale(30, 30, 30);
   sphere(1);
   popMatrix();
@@ -145,7 +135,7 @@ void drawBody(float timer, int x, int y, int z) {
   // 後ろのネジ
   fillColor("rob_c4");
   pushMatrix();
-  translate(0, 100, -100);
+  translate(0 + x, 100 + y, -100 + z);
   scale(30, 30, 30);
   sphere(1);
   popMatrix();
@@ -153,7 +143,7 @@ void drawBody(float timer, int x, int y, int z) {
   // 左のネジ
   fillColor("rob_c4");
   pushMatrix();
-  translate(100, 100, 0);
+  translate(100 + x, 100 + y, 0 + z);
   scale(30, 30, 30);
   sphere(1);
   popMatrix();
@@ -161,7 +151,7 @@ void drawBody(float timer, int x, int y, int z) {
   // 腹1
   fillColor("rob_c2");
   pushMatrix();
-  translate(0, 176, 0);
+  translate(0 + x, 176 + y, 0 + z);
   scale(120, 40, 120);
   pillar(1.3, 1, 1);
   popMatrix();
@@ -169,7 +159,7 @@ void drawBody(float timer, int x, int y, int z) {
   // 腹2
   fillColor("rob_c6");
   pushMatrix();
-  translate(0, 210, 0);
+  translate(0 + x, 210 + y, 0 + z);
   scale(115, 12, 115);
   pillar(1.3, 1, 1);
   popMatrix();
@@ -177,26 +167,26 @@ void drawBody(float timer, int x, int y, int z) {
   // 骨盤
   pushMatrix();
   fillColor("rob_c4");
-  translate(0, 220, 0);
+  translate(0 + x, 220 + y, 0 + z);
   scale(80, 20, 20);
   sphere(1);
   popMatrix();
   
 }
 
-// ロボットの右腕を描写
-void drawRightHand(float timer, int x, int y, int z) {
+// ロボットの腕を描写
+void drawHand(float timer, int x, int y, int z, int control) {
   int sec = (int)timer % 100; /* 0～99 */
 
   if (sec != 0 && sec > 70 && sec <= 99) {
   } else {
-    rotateZ(PI*sin(timer)/80);
+    rotateZ(PI*control*sin(timer)/180);
   }
 
   // 肩関節
   fillColor("rob_c4");
   pushMatrix();
-  translate(-150, 25, 0);
+  translate((control*150) + x, 25 + y, 0 + z);
   scale(20);
   sphere(1);
   popMatrix();
@@ -204,7 +194,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 肩のネジ
   fillColor("rob_c4");
   pushMatrix();
-  translate(-122, 25, 0);
+  translate((control*122) + x, 25 + y, 0 + z);
   scale(30, 20, 20);
   box(1);
   popMatrix();
@@ -212,7 +202,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 上腕1
   fillColor("rob_c5");
   pushMatrix();
-  translate(-149, 24, 0);
+  translate((control*149) + x, 24 + y, 0 + z);
   scale(20, 43, 45);
   box(1);
   popMatrix();
@@ -220,7 +210,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 上腕2
   fillColor("rob_c5");
   pushMatrix();
-  translate(-145, 57, 0);
+  translate((control*145) + x, 57 + y, 0 + z);
   scale(28, 30, 45);
   box(1);
   popMatrix();
@@ -228,7 +218,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 上腕3
   fillColor("rob_c5");
   pushMatrix();
-  translate(-145, 90, 0);
+  translate((control*145) + x, 90 + y, 0 + z);
   scale(26, 70, 42);
   box(1);
   popMatrix();
@@ -236,7 +226,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 肘
   fillColor("rob_c4");
   pushMatrix();
-  translate(-147, 130, 0);
+  translate((control*147) + x, 130 + y, 0 + z);
   scale(14, 18, 18);
   sphere(1);
   popMatrix();
@@ -244,7 +234,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 前腕1
   fillColor("rob_c6");
   pushMatrix();
-  translate(-147, 145, 0);
+  translate((control*147) + x, 145 + y, 0 + z);
   scale(22, 15, 30);
   box(1);
   popMatrix();
@@ -252,7 +242,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 前腕2
   fillColor("rob_c6");
   pushMatrix();
-  translate(-147, 155, 0);
+  translate((control*147) + x, 155 + y, 0 + z);
   scale(20, 15, 28);
   box(1);
   popMatrix();
@@ -260,7 +250,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 前腕3
   fillColor("rob_c6");
   pushMatrix();
-  translate(-147, 165, 0);
+  translate((control*147) + x, 165 + y, 0 + z);
   scale(18, 15, 26);
   box(1);
   popMatrix();
@@ -268,7 +258,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 前腕4
   fillColor("rob_c7");
   pushMatrix();
-  translate(-147, 180, 0);
+  translate((control*147) + x, 180 + y, 0 + z);
   scale(90, 8, 90);
   pillar(10, 0.1, 0.1);
   popMatrix();
@@ -276,7 +266,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 手首の関節
   fillColor("rob_c4");
   pushMatrix();
-  translate(-148, 243, 0);
+  translate((control*148) + x, 243 + y, 0 + z);
   scale(8, 9, 9);
   sphere(1);
   popMatrix();
@@ -284,7 +274,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 掌1
   fillColor("rob_c8");
   pushMatrix();
-  translate(-147, 230, 0);
+  translate((control*147) + x, 230 + y, 0 + z);
   scale(10, 20, 22);
   box(1);
   popMatrix();
@@ -292,7 +282,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 掌2
   fillColor("rob_c8");
   pushMatrix();
-  translate(-147, 255, 0);
+  translate((control*147) + x, 255 + y, 0 + z);
   scale(10, 25, 25);
   box(1);
   popMatrix();
@@ -300,7 +290,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 指1-1
   fillColor("rob_c9");
   pushMatrix();
-  translate(-147, 270, 8);
+  translate((control*147) + x, 270 + y, 8 + z);
   scale(40, 40, 40);
   pillar(1, 0.1, 0.1);
   popMatrix();
@@ -308,7 +298,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 指1-2
   fillColor("rob_c10");
   pushMatrix();
-  translate(-147, 290, 8);
+  translate((control*147) + x, 290 + y, 8 + z);
   scale(8, 16, 8);
   box(1);
   ;
@@ -317,7 +307,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   /* finger2-1 */
   fillColor("rob_c9");
   pushMatrix();
-  translate(-147, 270, -8);
+  translate((control*147) + x, 270 + y, -8 + z);
   scale(40, 40, 40);
   pillar(1, 0.1, 0.1);
   popMatrix();
@@ -325,7 +315,7 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 指2-2
   fillColor("rob_c10");
   pushMatrix();
-  translate(-147, 290, -8);
+  translate((control*147) + x, 290 + y, -8 + z);
   scale(8, 16, 8);
   box(1);
   popMatrix();
@@ -333,15 +323,15 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 指3-1
   fillColor("rob_c8");
   pushMatrix();
-  translate(-147, 260, 15);
-  scale(7, 14, 10);
+  translate((control*147) + x, 260 + y, 15+ z);
+  scale(7, 14, 10 );
   box(1);
   popMatrix();
 
   // 指3-2
   fillColor("rob_c9");
   pushMatrix();
-  translate(-147, 272, 15);
+  translate((control*147) + x, 272 + y, 15 + z);
   scale(40, 10, 40);
   pillar(1, 0.1, 0.1);
   popMatrix();
@@ -349,198 +339,26 @@ void drawRightHand(float timer, int x, int y, int z) {
   // 指3-3
   fillColor("rob_c10");
   pushMatrix();
-  translate(-147, 285, 15);
+  translate((control*147) + x, 285 + y, 15 + z);
   scale(6, 16, 6);
   box(1);
   popMatrix();
   
 }
 
-// ロボットの左腕を描写
-void drawLeftHand(float timer, int x, int y, int z) {
+// ロボットの脚を描写
+void drawFoot(float timer, int x, int y, int z, int control) {
   int sec = (int)timer % 100; /* 0～99 */
 
   if (sec != 0 && sec > 70 && sec <= 99) {
   } else {
-    rotateZ(PI*sin(timer)/80);
-  }
-
-  // 肩関節
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(150, 25, 0);
-  scale(20);
-  sphere(1);
-  popMatrix();
-
-  // 肩のネジ
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(122, 25, 0);
-  scale(30, 20, 20);
-  box(1);
-  popMatrix();
-
-  // 上腕1
-  fillColor("rob_c5");
-  pushMatrix();
-  translate(149, 24, 0);
-  scale(20, 43, 45);
-  box(1);
-  popMatrix();
-
-  // 上腕2
-  fillColor("rob_c5");
-  pushMatrix();
-  translate(145, 57, 0);
-  scale(28, 30, 45);
-  box(1);
-  popMatrix();
-
-  // 上腕3
-  fillColor("rob_c5");
-  pushMatrix();
-  translate(145, 90, 0);
-  scale(26, 70, 42);
-  box(1);
-  popMatrix();
-
-  // 肘
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(147, 130, 0);
-  scale(14, 18, 18);
-  sphere(1);
-  popMatrix();
-
-  // 前腕1
-  fillColor("rob_c6");
-  pushMatrix();
-  translate(147, 145, 0);
-  scale(22, 15, 30);
-  box(1);
-  popMatrix();
-
-  // 前腕2
-  fillColor("rob_c6");
-  pushMatrix();
-  translate(147, 155, 0);
-  scale(20, 15, 28);
-  box(1);
-  popMatrix();
-
-  // 前腕3
-  fillColor("rob_c6");
-  pushMatrix();
-  translate(147, 165, 0);
-  scale(18, 15, 26);
-  box(1);
-  popMatrix();
-
-  // 前腕4
-  fillColor("rob_c7");
-  pushMatrix();
-  translate(147, 180, 0);
-  scale(90, 8, 90);
-  pillar(10, 0.1, 0.1);
-  popMatrix();
-
-  // 手首の関節
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(148, 243, 0);
-  scale(8, 9, 9);
-  sphere(1);
-  popMatrix();
-
-  // 掌1
-  fillColor("rob_c8");
-  pushMatrix();
-  translate(147, 230, 0);
-  scale(10, 20, 22);
-  box(1);
-  popMatrix();
-
-  // 掌2
-  fillColor("rob_c8");
-  pushMatrix();
-  translate(147, 255, 0);
-  scale(10, 25, 25);
-  box(1);
-  popMatrix();
-
-  // 指1-1
-  fillColor("rob_c9");
-  pushMatrix();
-  translate(147, 270, 8);
-  scale(40, 40, 40);
-  pillar(1, 0.1, 0.1);
-  popMatrix();
-
-  // 指1-2
-  fillColor("rob_c10");
-  pushMatrix();
-  translate(147, 290, 8);
-  scale(8, 16, 8);
-  box(1);
-  ;
-  popMatrix();
-
-  /* finger2-1 */
-  fillColor("rob_c9");
-  pushMatrix();
-  translate(147, 270, -8);
-  scale(40, 40, 40);
-  pillar(1, 0.1, 0.1);
-  popMatrix();
-
-  // 指2-2
-  fillColor("rob_c10");
-  pushMatrix();
-  translate(147, 290, -8);
-  scale(8, 16, 8);
-  box(1);
-  popMatrix();
-
-  // 指3-1
-  fillColor("rob_c8");
-  pushMatrix();
-  translate(147, 260, 15);
-  scale(7, 14, 10);
-  box(1);
-  popMatrix();
-
-  // 指3-2
-  fillColor("rob_c9");
-  pushMatrix();
-  translate(147, 272, 15);
-  scale(40, 10, 40);
-  pillar(1, 0.1, 0.1);
-  popMatrix();
-
-  // 指3-3
-  fillColor("rob_c10");
-  pushMatrix();
-  translate(147, 285, 15);
-  scale(6, 16, 6);
-  box(1);
-  popMatrix();
-  
-}
-
-// ロボットの右脚を描写
-void drawRightFoot(float timer, int x, int y, int z) {
-  int sec = (int)timer % 100; /* 0～99 */
-
-  if (sec != 0 && sec > 70 && sec <= 99) {
-  } else {
-    rotateX(PI*-sin(timer)/60);
+    rotateX(PI*control*sin(timer)/60);
   }
 
   // 股関節
   fillColor("rob_c4");
   pushMatrix();
-  translate(-70, 225, 0);
+  translate((control*70) + x, 225 + y, 0 + z);
   scale(20, 20, 20);
   sphere(1);
   popMatrix();
@@ -548,7 +366,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 腿1
   fillColor("rob_c5");
   pushMatrix();
-  translate(-55, 240, 0);
+  translate((control*55) + x, 240 + y, 0 + z);
   scale(50, 55, 55);
   box(1);
   popMatrix();
@@ -556,7 +374,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 腿2
   fillColor("rob_c5");
   pushMatrix();
-  translate(-55, 260, 0);
+  translate((control*55) + x, 260 + y, 0 + z);
   scale(45, 55, 50);
   box(1);
   popMatrix();
@@ -564,7 +382,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 膝
   fillColor("rob_c4");
   pushMatrix();
-  translate(-55, 290, 0);
+  translate((control*55) + x, 290 + y, 0 + z);
   scale(20, 20, 20);
   sphere(1);
   popMatrix();
@@ -572,7 +390,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 脛1
   fillColor("rob_c6");
   pushMatrix();
-  translate(-55, 315, 0);
+  translate((control*55) + x, 315 + y, 0 + z);
   scale(30, 30, 35);
   box(1);
   popMatrix();
@@ -580,7 +398,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 脛2
   fillColor("rob_c7");
   pushMatrix();
-  translate(-55, 350, 0);
+  translate((control*55) + x, 350 + y, 0 + z);
   scale(100, 40, 100);
   pillar(1, 0.1, 0.1);
   popMatrix();
@@ -588,7 +406,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 足首の関節
   fillColor("rob_c4");
   pushMatrix();
-  translate(-55, 382, 0);
+  translate((control*55) + x, 382 + y, 0 + z);
   scale(16, 16, 14);
   sphere(1);
   popMatrix();
@@ -596,7 +414,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 足首
   fillColor("rob_c8");
   pushMatrix();
-  translate(-55, 370, 0);
+  translate((control*55) + x, 370 + y, 0 + z);
   scale(28, 20, 30);
   box(1);
   popMatrix();
@@ -604,7 +422,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 足1
   fillColor("rob_c8");
   pushMatrix();
-  translate(-55, 395, 5);
+  translate((control*55) + x, 395 + y, 5 + z);
   scale(24, 15, 50);
   box(1);
   popMatrix();
@@ -612,7 +430,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 足2
   fillColor("rob_c11");
   pushMatrix();
-  translate(-55, 405, 22);
+  translate((control*55) + x, 405 + y, 22 + z);
   scale(55, 7, 50);
   box(1);
   popMatrix();
@@ -620,7 +438,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 足3
   fillColor("rob_c8");
   pushMatrix();
-  translate(-55, 397, -15);
+  translate((control*55) + x, 397 + y, -15 + z);
   scale(32, 23, 20);
   box(1);
   popMatrix();
@@ -628,114 +446,7 @@ void drawRightFoot(float timer, int x, int y, int z) {
   // 足4
   fillColor("rob_c11");
   pushMatrix();
-  translate(-55, 405, -22);
-  scale(40, 8, 30);
-  box(1);
-  popMatrix();
-  
-}
-
-// ロボットの左脚を描写
-void drawLeftFoot(float timer, int x, int y, int z) {
-  int sec = (int)timer % 100; /* 0～99 */
-
-  if (sec != 0 && sec > 70 && sec <= 99) {
-  } else {
-    rotateX(PI*sin(timer)/60);
-  }
-
-  // 股関節
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(70, 225, 0);
-  scale(20, 20, 20);
-  sphere(1);
-  popMatrix();
-
-  // 腿1
-  fillColor("rob_c5");
-  pushMatrix();
-  translate(55, 240, 0);
-  scale(50, 55, 55);
-  box(1);
-  popMatrix();
-
-  // 腿2
-  fillColor("rob_c5");
-  pushMatrix();
-  translate(55, 260, 0);
-  scale(45, 55, 50);
-  box(1);
-  popMatrix();
-
-  // 膝
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(55, 290, 0);
-  scale(20, 20, 20);
-  sphere(1);
-  popMatrix();
-
-  // 脛1
-  fillColor("rob_c6");
-  pushMatrix();
-  translate(55, 315, 0);
-  scale(30, 30, 35);
-  box(1);
-  popMatrix();
-
-  // 脛2
-  fillColor("rob_c7");
-  pushMatrix();
-  translate(55, 350, 0);
-  scale(100, 40, 100);
-  pillar(1, 0.1, 0.1);
-  popMatrix();
-
-  // 足首の関節
-  fillColor("rob_c4");
-  pushMatrix();
-  translate(55, 382, 0);
-  scale(16, 16, 14);
-  sphere(1);
-  popMatrix();
-
-  // 足首
-  fillColor("rob_c8");
-  pushMatrix();
-  translate(55, 370, 0);
-  scale(28, 20, 30);
-  box(1);
-  popMatrix();
-
-  // 足1
-  fillColor("rob_c8");
-  pushMatrix();
-  translate(55, 395, 5);
-  scale(24, 15, 50);
-  box(1);
-  popMatrix();
-
-  // 足2
-  fillColor("rob_c11");
-  pushMatrix();
-  translate(55, 405, 22);
-  scale(55, 7, 50);
-  box(1);
-  popMatrix();
-
-  // 足3
-  fillColor("rob_c8");
-  pushMatrix();
-  translate(55, 397, -15);
-  scale(32, 23, 20);
-  box(1);
-  popMatrix();
-
-  // 足4
-  fillColor("rob_c11");
-  pushMatrix();
-  translate(55, 405, -22);
+  translate((control*55) + x, 405 + y, -22 + z);
   scale(40, 8, 30);
   box(1);
   popMatrix();

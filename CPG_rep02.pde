@@ -27,7 +27,7 @@ void draw() {
   background(0);
   lights();
   noStroke();
-  translate(width/2.0, height/2.0 + 300, -500);
+  translate(width/2.0, height/2.0, -500);
   rotateX(rotX);
   rotateY(rotY);
 
