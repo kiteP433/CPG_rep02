@@ -9,7 +9,7 @@ float rotY = PI/4;
 float myTimer;
 
 // 背景描画用のテクスチャー
-PImage backSpaceTex1,backSpaceTex2,backSpaceTex3;
+PImage backSpaceTex1, backSpaceTex2, backSpaceTex3;
 
 void setup() { 
   size(WIDTH, HEIGHT, P3D);
@@ -43,50 +43,20 @@ void draw() {
   pushMatrix();
   translate(0, -1580, 0);
   scale(4000, 2000, 4000);
-  DrawBackSpace(backSpaceTex1,backSpaceTex2,backSpaceTex3);
+  DrawBackSpace(backSpaceTex1, backSpaceTex2, backSpaceTex3);
   popMatrix();
-  
+
   // ロボット描画
-  // ロボットの顔を描写
-  pushMatrix();
-  DrawFace(myTimer);
-  popMatrix();
-  
-  // ロボットの顔を描写
-  pushMatrix();
-  DrawBody();
-  popMatrix();
+  DrawRobot(myTimer);
 
-  // ロボットの右腕を描写
-  pushMatrix();
-  DrawRightHand(myTimer);
-  popMatrix();
-
-  // ロボットの左腕を描写
-  pushMatrix();
-  DrawLeftHand(myTimer);
-  popMatrix();
-
-  // ロボットの右脚を描写
-  pushMatrix();
-  DrawRightFoot(myTimer);
-  popMatrix();
-
-  // ロボットの左脚を描写
-  pushMatrix();
-  DrawLeftFoot(myTimer);
-  popMatrix();
-  
   // タイマーを進める
   myTimer = myTimer + 0.1;
-  
 }
 
 void mouseDragged() {
   float rate = 0.01;
-  
+
   rotX += (pmouseY-mouseY) * rate;
   rotY += (mouseX-pmouseX) * rate;
-  
 }
 
