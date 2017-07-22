@@ -1,5 +1,4 @@
 // コンピュータグラフィックス レポート2 1516016 3EP4-33 冨水 健義
-
 final int WIDTH  = 1000;
 final int HEIGHT = 1000;
 float rotX = PI/4;
@@ -28,16 +27,16 @@ void draw() {
   background(0);
   lights();
   noStroke();
-  translate(width/2.0, height/2.0, -500);
+  translate(width/2.0, height/2.0 + 300, -500);
   rotateX(rotX);
   rotateY(rotY);
 
-  //中心球
-  pushMatrix();
-  translate(0, 0, 0);
-  scale(10);
-  sphere(1);
-  popMatrix();
+//  //中心球
+//  pushMatrix();
+//  translate(0, 0, 0);
+//  scale(10);
+//  sphere(1);
+//  popMatrix();
 
   // 背景描画
   pushMatrix();
@@ -47,10 +46,11 @@ void draw() {
   popMatrix();
 
   // ロボット描画
-  DrawRobot(myTimer);
+  DrawRobot(myTimer, 0, 0, 0);
 
   // タイマーを進める
   myTimer = myTimer + 0.1;
+  
 }
 
 void mouseDragged() {
@@ -58,5 +58,6 @@ void mouseDragged() {
 
   rotX += (pmouseY-mouseY) * rate;
   rotY += (mouseX-pmouseX) * rate;
+  
 }
 

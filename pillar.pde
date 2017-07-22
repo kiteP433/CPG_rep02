@@ -3,8 +3,7 @@ void pillar(float length, float radiusTop, float radiusBottom) {
   float x, y, z;
 
   pushMatrix();
-
-  /* Create Top */
+  // Create Top
   beginShape(TRIANGLE_FAN);
   y = -length / 2;
   vertex(0, y, 0);
@@ -15,7 +14,7 @@ void pillar(float length, float radiusTop, float radiusBottom) {
   }
   endShape();
 
-  /* Create Bottom */
+  // Create Bottom
   beginShape(TRIANGLE_FAN);
   y = length / 2;
   vertex(0, y, 0);
@@ -26,7 +25,7 @@ void pillar(float length, float radiusTop, float radiusBottom) {
   }
   endShape();
 
-  /* Create Side */
+  // Create Side
   beginShape(TRIANGLE_STRIP);
   for (int deg =0; deg <= 360; deg = deg + 5) {
     x = cos(radians(deg)) * radiusTop;
@@ -39,7 +38,7 @@ void pillar(float length, float radiusTop, float radiusBottom) {
     vertex(x, y, z);
   }
   endShape();
-
   popMatrix();
+  
 }
 

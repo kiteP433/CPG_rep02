@@ -1,6 +1,5 @@
 // 色設定
 void fillColor(String mode) {
-
   if (mode == null) {
     fill(0);
   }
@@ -42,5 +41,6 @@ void fillColor(String mode) {
   } else {
     fill(255);
   }
+  
 }
 
