@@ -1,5 +1,9 @@
 // ロボット描画
 void DrawRobot(float timer, int x, int y, int z) {
+  pushMatrix();
+  rotateY(-0.05*timer);
+  translate(500, 0, 0);
+
   // ロボットの顔を描写
   pushMatrix();
   drawFace(timer, x, y, z);
@@ -29,7 +33,8 @@ void DrawRobot(float timer, int x, int y, int z) {
   pushMatrix();
   drawFoot(timer, x, y, z, 1);
   popMatrix();
-  
+
+  popMatrix();
 }
 
 // ロボットの目を描写
@@ -72,7 +77,6 @@ void drawEyes(float timer, int x, int y, int z) {
   scale(20);
   sphere(1);
   popMatrix();
-  
 }
 
 
@@ -88,7 +92,6 @@ void drawFace(float timer, int x, int y, int z) {
 
   // 両目
   drawEyes(timer, x, y, z);
-  
 }
 
 // ロボットの身体を描写
@@ -172,7 +175,6 @@ void drawBody(float timer, int x, int y, int z) {
   scale(80, 20, 20);
   sphere(1);
   popMatrix();
-  
 }
 
 // ロボットの腕を描写
@@ -344,7 +346,6 @@ void drawHand(float timer, int x, int y, int z, int control) {
   scale(6, 16, 6);
   box(1);
   popMatrix();
-  
 }
 
 // ロボットの脚を描写
@@ -451,6 +452,5 @@ void drawFoot(float timer, int x, int y, int z, int control) {
   scale(40, 8, 30);
   box(1);
   popMatrix();
-  
 }
 
