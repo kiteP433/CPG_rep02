@@ -29,6 +29,7 @@ void DrawRobot(float timer, int x, int y, int z) {
   pushMatrix();
   drawFoot(timer, x, y, z, 1);
   popMatrix();
+  
 }
 
 // ロボットの目を描写

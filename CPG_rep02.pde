@@ -27,26 +27,23 @@ void draw() {
   background(0);
   lights();
   noStroke();
-  translate(width/2.0, height/2.0, -500);
+  translate(width/2.0, height/2.0 + 200, -700);
   rotateX(rotX);
   rotateY(rotY);
 
-//  //中心球
-//  pushMatrix();
-//  translate(0, 0, 0);
-//  scale(10);
-//  sphere(1);
-//  popMatrix();
-
   // 背景描画
   pushMatrix();
-  translate(0, -1580, 0);
-  scale(4000, 2000, 4000);
+  translate(0, -1085, 0);
+  scale(3000, 1500, 3000);
   DrawBackSpace(backSpaceTex1, backSpaceTex2, backSpaceTex3);
   popMatrix();
 
   // ロボット描画
+  pushMatrix();
+  rotateY(-0.1*myTimer);
+  translate(500, 0, 0);
   DrawRobot(myTimer, 0, 0, 0);
+  popMatrix();
 
   // タイマーを進める
   myTimer = myTimer + 0.1;
