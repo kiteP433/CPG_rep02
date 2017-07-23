@@ -1,32 +1,34 @@
-// コンピュータグラフィックス レポート2 1516016 3EP4-33 冨水 健義
+// Computer graphics report2 1516016 3EP4-33 Tomizu Tastuyoshi.
+// Main program.
 final int WIDTH  = 1000;
 final int HEIGHT = 800;
 float rotX = PI/4;
 float rotY = PI/4;
 
-// タイマー
+// For timer.
 float myTimer;
 int count;
-// 背景描画用のテクスチャー
+
+// Texture for background drawing.
 PImage backSpaceTex1, backSpaceTex2, backSpaceTex3;
 
-// パーティクル用
+// For particles.
 ParticleSystem particleSystem;
 PImage sprite;
 
 void setup() { 
   size(WIDTH, HEIGHT, P3D);
 
-  // パーティクルの読み込み
+  // Loading particles.
   orientation(LANDSCAPE);
   sprite = loadImage("sprite1.png");
   particleSystem = new ParticleSystem(100);
 
-  // タイマーの初期化
+  // Initialize timer.
   myTimer = 0.0;
   count = 0;
 
-  // 背景描画用のテクスチャーの読み込み
+  // Load texture for background drawing.
   backSpaceTex1 = loadImage("data/backSpaceTex1.jpg");
   backSpaceTex2 = loadImage("data/backSpaceTex2.jpg");
   backSpaceTex3 = loadImage("data/backSpaceTex3.jpg");
@@ -43,16 +45,18 @@ void draw() {
   rotateX(rotX);
   rotateY(rotY);
 
-  // 背景描画
-  pushMatrix();
+  // Background drawing.
+  pushMatrix();// Background.
   translate(0, -250, 0);
   scale(2000, 1000, 2000);
   DrawBackSpace(backSpaceTex1, backSpaceTex2, backSpaceTex3);
-  popMatrix();
+  popMatrix();// Background.
 
-  // ロボット描画
-  count = (int)myTimer % 250; // 0～249
-  pushMatrix();
+ // count range is 0～249.
+  count = (int)myTimer % 250;
+
+  // Robot drawing.
+  pushMatrix();// Robot.
   if (count != 0 && count > 125 && count <= 250) {
   } else {
     rotateY(-0.05*myTimer);
@@ -60,19 +64,18 @@ void draw() {
   translate(500, 0, 0);
   DrawRobot(myTimer, 0, 330, 0);
 
-  // パーティクル描画
-  pushMatrix();
+  // Particle drawing.
+  pushMatrix();// Particle.
   translate(0, 50, 0);
   if (count != 0 && count > 125 && count <= 250) {
     particleSystem.update();
     particleSystem.display();
     particleSystem.setEmitter(0, 200);
   }
-  popMatrix();
-
-  popMatrix();
-
-  // タイマーを進める
+  popMatrix();// Particle.
+  popMatrix();// Robot.
+  
+  // Advance the myTimer by 0.1.
   myTimer = myTimer + 0.1;
 }
 

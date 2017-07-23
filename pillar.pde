@@ -1,4 +1,5 @@
-// 円柱を描画
+// Computer graphics report2 1516016 3EP4-33 Tomizu Tastuyoshi.
+// Draw pillar.
 void Pillar(float length, float radiusTop, float radiusBottom) {
   float x, y, z;
 

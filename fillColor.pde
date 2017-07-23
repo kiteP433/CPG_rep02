@@ -1,4 +1,5 @@
-// 色設定
+// Computer graphics report2 1516016 3EP4-33 Tomizu Tastuyoshi.
+// Set colors
 void FillColor(String mode) {
   if (mode == null) {
     fill(0);

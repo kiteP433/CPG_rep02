@@ -1,3 +1,4 @@
+// Computer graphics report2 1516016 3EP4-33 Tomizu Tastuyoshi.
 class Particle {
   PVector velocity;
   float lifeSpan = 255;

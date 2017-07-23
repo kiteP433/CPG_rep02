@@ -1,4 +1,5 @@
-//背景空間の描画
+// Computer graphics report2 1516016 3EP4-33 Tomizu Tastuyoshi.
+// Background space drawing class
 void DrawBackSpace(PImage tex1, PImage tex2, PImage tex3) {
   //tex1:top
   topTexture(tex1);
@@ -13,7 +14,7 @@ void DrawBackSpace(PImage tex1, PImage tex2, PImage tex3) {
   bottomTexture(tex3);
 }
 
-// 上部テクスチャーを描画
+// Draw top texture.
 void topTexture(PImage tex) {
   beginShape(QUADS);
   texture(tex);
@@ -26,7 +27,7 @@ void topTexture(PImage tex) {
   endShape();
 }
 
-// 前部テクスチャーを描画
+// Draw front texture.
 void frontTexture(PImage tex) {
   beginShape(QUADS);
   texture(tex);
@@ -39,7 +40,7 @@ void frontTexture(PImage tex) {
   endShape();
 }
 
-// 後部テクスチャーを描画
+// Draw back texture.
 void backTexture(PImage tex) {
   beginShape(QUADS);
   texture(tex);
@@ -52,7 +53,7 @@ void backTexture(PImage tex) {
   endShape();
 }
 
-// 左部テクスチャーを描画
+// Draw left texture.
 void leftTexture(PImage tex) {
   beginShape(QUADS);
   texture(tex);
@@ -65,7 +66,7 @@ void leftTexture(PImage tex) {
   endShape();
 }
 
-// 右部テクスチャーを描画
+// Draw right texture.
 void rightTexture(PImage tex) {
   beginShape(QUADS);
   texture(tex);
@@ -78,7 +79,7 @@ void rightTexture(PImage tex) {
   endShape();
 }
 
-// 下部テクスチャーを描画
+// Draw bottom texture.
 void bottomTexture(PImage tex) {
   beginShape(QUADS);
   texture(tex);
