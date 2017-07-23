@@ -11,7 +11,7 @@ int count;
 PImage backSpaceTex1, backSpaceTex2, backSpaceTex3;
 
 // パーティクル用
-ParticleSystem particleSystem1, particleSystem2;
+ParticleSystem particleSystem;
 PImage sprite;
 
 void setup() { 
@@ -20,9 +20,7 @@ void setup() {
   // パーティクルの読み込み
   orientation(LANDSCAPE);
   sprite = loadImage("sprite1.png");
-  particleSystem1 = new ParticleSystem(100);
-  sprite = loadImage("sprite2.png");
-  particleSystem2 = new ParticleSystem(100);
+  particleSystem = new ParticleSystem(100);
 
   // タイマーの初期化
   myTimer = 0.0;
@@ -66,17 +64,12 @@ void draw() {
   pushMatrix();
   translate(0, 50, 0);
   if (count != 0 && count > 125 && count <= 250) {
-    particleSystem2.update();
-    particleSystem2.display();
-    particleSystem2.setEmitter(0, 200);
-  } else {
-    particleSystem1.update();
-    particleSystem1.display();
-    particleSystem1.setEmitter(0, 200);
+    particleSystem.update();
+    particleSystem.display();
+    particleSystem.setEmitter(0, 200);
   }
-  // パーティクル描画終了
   popMatrix();
-  // ロボット描画終了
+
   popMatrix();
 
   // タイマーを進める
