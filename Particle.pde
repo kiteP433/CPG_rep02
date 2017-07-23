@@ -1,5 +1,4 @@
 class Particle {
-
   PVector velocity;
   float lifespan = 255;
   
@@ -8,10 +7,8 @@ class Particle {
   
   PVector gravity = new PVector(0,0.1);
 
-
   Particle() {
     partSize = random(50,160);
-    
     
     part = createShape();
     part.beginShape(QUAD);
@@ -23,9 +20,7 @@ class Particle {
     part.vertex(+partSize/2, +partSize/2, sprite.width, sprite.height);
     part.vertex(-partSize/2, +partSize/2, 0, sprite.height);
     part.endShape();
-    
 
-    
     rebirth(width/2,height/2);
     lifespan = random(255);
   }
@@ -51,7 +46,6 @@ class Particle {
      return false;
     } 
   }
-  
 
   public void update() {
     lifespan = lifespan - 1;

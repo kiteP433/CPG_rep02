@@ -1,9 +1,5 @@
 // ロボット描画
 void DrawRobot(float timer, int x, int y, int z) {
-  pushMatrix();
-  rotateY(-0.05*timer);
-  translate(500, 0, 0);
-
   // ロボットの顔を描写
   pushMatrix();
   drawFace(timer, x, y, z);
@@ -33,35 +29,10 @@ void DrawRobot(float timer, int x, int y, int z) {
   pushMatrix();
   drawFoot(timer, x, y, z, 1);
   popMatrix();
-
-  popMatrix();
 }
 
 // ロボットの目を描写
-void drawEyes(float timer, int x, int y, int z) {
-  int r, g, b;// RGB値
-  int sec;
-
-  sec = (int)timer % 100; /* 0～99 */
-  // 目の色：赤
-  if (sec != 0 && sec > 70 && sec <= 80) {
-    r = 255; 
-    g = 0; 
-    b = 0;
-  }
-  // 目の色：灰色
-  else if (sec != 0 && sec % 15 == 0 && sec <= 60 || sec > 80) {
-    r = 100; 
-    g = 100; 
-    b = 100;
-  }
-  // 目の色：ノーマル（黄白）
-  else {
-    r = 255; 
-    g = 255; 
-    b = 210;
-  }
-
+void drawEyes(float timer, int x, int y, int z, int r, int g, int b) {
   // 右目
   fill(r, g, b);
   pushMatrix();
@@ -79,9 +50,10 @@ void drawEyes(float timer, int x, int y, int z) {
   popMatrix();
 }
 
-
 // ロボットの顔を描写
 void drawFace(float timer, int x, int y, int z) {
+  int sec = (int)timer % 250; // 0～249
+
   // 顔
   fillColor("rob_c1");
   pushMatrix();
@@ -91,7 +63,18 @@ void drawFace(float timer, int x, int y, int z) {
   popMatrix();
 
   // 両目
-  drawEyes(timer, x, y, z);
+  // 目の色：赤（126secから135secは常時，136sec以上180sec未満では15sec刻みで点滅）
+  if (sec != 0 && (sec > 125 && sec <= 135) || (sec % 15 == 0 && sec <= 180 && sec > 135)) {
+    drawEyes(timer, x, y, z, 255, 0, 0);
+  }
+  // 目の色：灰色（115sec以内では15sec刻みで点滅，126sec以上では常時）
+  else if (sec != 0 && sec % 15 == 0 && sec <= 115 || sec > 125) {
+    drawEyes(timer, x, y, z, 100, 100, 100);
+  }
+  // 目の色：黄白（開始時と上記に該当していない間）
+  else {
+    drawEyes(timer, x, y, z, 255, 255, 210);
+  }
 }
 
 // ロボットの身体を描写
@@ -179,9 +162,10 @@ void drawBody(float timer, int x, int y, int z) {
 
 // ロボットの腕を描写
 void drawHand(float timer, int x, int y, int z, int control) {
-  int sec = (int)timer % 100; /* 0～99 */
+  int sec = (int)timer % 250; // 0～249
 
-  if (sec != 0 && sec > 70 && sec <= 99) {
+  // 歩行処理
+  if (sec != 0 && sec > 125) {
   } else {
     rotateZ(PI*control*sin(timer)/180);
   }
@@ -307,7 +291,7 @@ void drawHand(float timer, int x, int y, int z, int control) {
   ;
   popMatrix();
 
-  /* finger2-1 */
+  /* 指2-1 */
   fillColor("rob_c9");
   pushMatrix();
   translate((control*147) + x, 270 + y, -8 + z);
@@ -350,9 +334,10 @@ void drawHand(float timer, int x, int y, int z, int control) {
 
 // ロボットの脚を描写
 void drawFoot(float timer, int x, int y, int z, int control) {
-  int sec = (int)timer % 100; /* 0～99 */
+  int sec = (int)timer % 250; // 0～249
 
-  if (sec != 0 && sec > 70 && sec <= 99) {
+  // 歩行処理
+  if (sec != 0 && sec > 125) {
   } else {
     rotateX(PI*control*sin(timer)/60);
   }

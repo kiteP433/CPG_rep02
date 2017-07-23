@@ -1,10 +1,8 @@
 class ParticleSystem {
   ArrayList<Particle> particles;
-
   PShape particleShape;
 
-  ParticleSystem(int n) 
-  {
+  ParticleSystem(int n) {
     particles = new ArrayList<Particle>();
     particleShape = createShape(PShape.GROUP);
 
@@ -30,7 +28,6 @@ class ParticleSystem {
   }
 
   void display() {
-
     shape(particleShape);
   }
 }
