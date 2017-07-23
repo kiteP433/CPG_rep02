@@ -6,7 +6,7 @@ float rotY = PI/4;
 
 // タイマー
 float myTimer;
-int sec;
+int count;
 // 背景描画用のテクスチャー
 PImage backSpaceTex1, backSpaceTex2, backSpaceTex3;
 
@@ -26,7 +26,7 @@ void setup() {
 
   // タイマーの初期化
   myTimer = 0.0;
-  sec = 0;
+  count = 0;
 
   // 背景描画用のテクスチャーの読み込み
   backSpaceTex1 = loadImage("data/backSpaceTex1.jpg");
@@ -53,9 +53,9 @@ void draw() {
   popMatrix();
 
   // ロボット描画
-  sec = (int)myTimer % 250; // 0～249
+  count = (int)myTimer % 250; // 0～249
   pushMatrix();
-  if (sec != 0 && sec > 125 && sec <= 250) {
+  if (count != 0 && count > 125 && count <= 250) {
   } else {
     rotateY(-0.05*myTimer);
   }
@@ -65,7 +65,7 @@ void draw() {
   // パーティクル描画
   pushMatrix();
   translate(0, 50, 0);
-  if (sec != 0 && sec > 125 && sec <= 250) {
+  if (count != 0 && count > 125 && count <= 250) {
     particleSystem2.update();
     particleSystem2.display();
     particleSystem2.setEmitter(0, 200);

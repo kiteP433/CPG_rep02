@@ -1,15 +1,15 @@
 class Particle {
   PVector velocity;
-  float lifespan = 255;
-  
+  float lifeSpan = 255;
+
   PShape part;
   float partSize;
-  
-  PVector gravity = new PVector(0,0.1);
+
+  PVector gravity = new PVector(0, 0.1);
 
   Particle() {
-    partSize = random(50,160);
-    
+    partSize = random(50, 160);
+
     part = createShape();
     part.beginShape(QUAD);
     part.noStroke();
@@ -21,37 +21,37 @@ class Particle {
     part.vertex(-partSize/2, +partSize/2, 0, sprite.height);
     part.endShape();
 
-    rebirth(width/2,height/2);
-    lifespan = random(255);
+    rebirth(width/2, height/2);
+    lifeSpan = random(255);
   }
 
   PShape getShape() {
     return part;
   }
-  
+
   void rebirth(float x, float y) {
     float a = random(TWO_PI);
-    float speed = random(0.5,4);
+    float speed = random(0.5, 4);
     velocity = new PVector(cos(a), sin(a));
     velocity.mult(speed);
-    lifespan = 255;   
+    lifeSpan = 255;   
     part.resetMatrix();
-    part.translate(x, y); 
+    part.translate(x, y);
   }
-  
+
   boolean isDead() {
-    if (lifespan < 0) {
-     return true;
+    if (lifeSpan < 0) {
+      return true;
     } else {
-     return false;
-    } 
+      return false;
+    }
   }
 
   public void update() {
-    lifespan = lifespan - 1;
+    lifeSpan = lifeSpan - 1;
     velocity.add(gravity);
-    
-    part.setTint(color(255,lifespan));
+    part.setTint(color(255, lifeSpan));
     part.translate(velocity.x, velocity.y);
   }
 }
+

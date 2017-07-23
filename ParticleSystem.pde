@@ -7,22 +7,22 @@ class ParticleSystem {
     particleShape = createShape(PShape.GROUP);
 
     for (int i = 0; i < n; i++) {
-      Particle p = new Particle();
-      particles.add(p);
-      particleShape.addChild(p.getShape());
+      Particle particle = new Particle();
+      particles.add(particle);
+      particleShape.addChild(particle.getShape());
     }
   }
 
   void update() {
-    for (Particle p : particles) {
-      p.update();
+    for (Particle particle : particles) {
+      particle.update();
     }
   }
 
   void setEmitter(float x, float y) {
-    for (Particle p : particles) {
-      if (p.isDead()) {
-        p.rebirth(x, y);
+    for (Particle particle : particles) {
+      if (particle.isDead()) {
+        particle.rebirth(x, y);
       }
     }
   }
