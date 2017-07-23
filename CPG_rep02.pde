@@ -10,7 +10,11 @@ float myTimer;
 int count;
 
 // Texture for background drawing.
+BackSpace backSpace;
 PImage backSpaceTex1, backSpaceTex2, backSpaceTex3;
+
+// For robot.
+Robot robot;
 
 // For particles.
 ParticleSystem particleSystem;
@@ -29,9 +33,13 @@ void setup() {
   count = 0;
 
   // Load texture for background drawing.
+  backSpace = new BackSpace();
   backSpaceTex1 = loadImage("data/backSpaceTex1.jpg");
   backSpaceTex2 = loadImage("data/backSpaceTex2.jpg");
   backSpaceTex3 = loadImage("data/backSpaceTex3.jpg");
+
+  // Loading robot..
+  robot = new Robot();
 
   textureMode(NORMAL);
   fill(255);
@@ -49,10 +57,10 @@ void draw() {
   pushMatrix();// Background.
   translate(0, -250, 0);
   scale(2000, 1000, 2000);
-  DrawBackSpace(backSpaceTex1, backSpaceTex2, backSpaceTex3);
+  backSpace.drawBackSpace(backSpaceTex1, backSpaceTex2, backSpaceTex3);
   popMatrix();// Background.
 
- // count range is 0～249.
+  // count range is 0～249.
   count = (int)myTimer % 250;
 
   // Robot drawing.
@@ -62,7 +70,7 @@ void draw() {
     rotateY(-0.05*myTimer);
   }
   translate(500, 0, 0);
-  DrawRobot(myTimer, 0, 330, 0);
+  robot.drawRobot(myTimer, 0, 330, 0);
 
   // Particle drawing.
   pushMatrix();// Particle.
@@ -74,7 +82,7 @@ void draw() {
   }
   popMatrix();// Particle.
   popMatrix();// Robot.
-  
+
   // Advance the myTimer by 0.1.
   myTimer = myTimer + 0.1;
 }
