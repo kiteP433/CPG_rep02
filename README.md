@@ -1,2 +1,2 @@
 # CPG_rep02
-This source is Computer Graphics Report 2.
+This source is 2nd report of Computer Graphics.
